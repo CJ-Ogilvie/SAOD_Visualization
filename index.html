@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SAOD Web App</title>
+  </head>
+  <body>
+      <img src="images/u-of-s-banner.png"></img>
+      <h1>Stratospheric Aerosol Visualization App</h1>
+      <p> This app was created to visualize Stratospheric Aerosol reconstructions. The github repository containing all the code and data used to create this page can be accessed <a href="https://github.com/CJ-Ogilvie/AOD_Web_App.github.io">here</a>.
+      </p>
+    <h2>How to use:</h2>
+    <dl>
+      <dt>Global Mean SAOD tab:</dt>
+      <dd>
+        <ul>
+        <li>Use the top buttons to select the active datasets.</li>
+        <li>Use the smaller plot to select the active time range. The zoom tools in the toolbar on the right may be useful.</li>
+        <li>Hover over any datapoint to get its exact value and coordinates.</li>
+        </ul>
+      </dd>
+      <dt>Zonal Mean SAOD tab:</dt>
+      <dd>
+        <ul>
+          <li>Use the scroll wheel to zoom on the x axis of each plot, and the mouse to pan.</li>
+          <li>Hover over any point to see its exact value and coordinates.</li>
+          <li>Use the tabs at the top to change which page of datasets you are viewing.</li>
+        </ul>
+      </dd>
+   </dl>
+   <iframe src="AOD_Web_App.html" width="100%" height="1100" scrolling="no"></iframe>
+   <h2>Data descriptions:</h2>
+    <dl>
+      <dt>GISS:</dt>
+        <dd>	
+          <ul>
+            <li>Source: <a href=https://data.giss.nasa.gov/modelforce/strataer/>Goddard Institute for Space Studies (GISS).</a></li>
+            <li>	Reference: Sato, M., Hansen, J. E., McCormick, M. P. and Pollack, J. B.: Stratospheric Aerosol Optical Depths, 1850–1990, J. Geophys. Res., 98(D12), 22987–22994, doi:10.1029/93JD02553, 1993.</li>
+            <li>	Short description: Based on satellite data from 1979-20XX, including VXX retrievals from SAGE II. From XXXX, data is from the OSIRIS instrument. Before 1979, eruption timings and magnitudes based on ground-based observations and eye-witness accounts.</li> 
+           </ul>
+         </dd>
+      <dt>Ammann:</dt>
+         <dd>	
+           <ul>
+             <li>Source: <a href=https://data.noaa.gov/dataset/dataset/noaa-wds-paleoclimatology-ammann-et-al-2003-monthly-volcanic-forcing-data-for-climat-1890-1999>National Oceanic and Atmospheric Administration (NOAA).</a></li>
+             <li>Reference: Ammann, C. M., Meehl, G. A., Washington, W. M. and Zender, C. S.: A monthly and latitudinally varying volcanic forcing dataset in simulations of 20th century climate, Geophys. Res. Lett., 30(12), 59–1, doi:10.1029/2003GL016875, 2003.</li>
+             <li>Short Description: SAOD derived from ice cores.</li>
+             </ul>
+         </dd>
+      <dt>IVI2:</dt>
+        <dd>	
+          <ul>
+            <li>Source: <a href=http://climate.envsci.rutgers.edu/IVI2/>Rutgers University</a></li>
+            <li>Reference: Gao, C., Robock, A. and Ammann, C.: Volcanic forcing of climate over the past 1500 years: An improved ice core-based index for climate models, J. Geophys. Res., 113, D23111, doi:10.1029/2008JD010239, 2008.</li>
+            <li>Short description: Provides estimates of sulfate aerosol injection mass, and spatial evolution of sulfate aerosol mass. Based on bipolar ice core data, with recent eruptions from satellite observations. Conversion to SAOD is based on a linear scaling.</li>
+          </ul>
+         </dd>      
+       <dt>ICI5:</dt>
+         <dd>	
+          <ul>
+            <li>Source: <a href=https://www.ncdc.noaa.gov/paleo-search/study/14168>National Oceanic and Atmospheric Administration (NOAA).</a></li>
+            <li>Reference: Crowley, T. J. and Unterman, M. B.: Technical details concerning development of a 1200 yr proxy index for global volcanism, Earth Syst. Sci. Data, 5(1), 187–197, doi:10.5194/essd-5-187-2013, 2013.</li>
+            <li>Short description: Provides estimates of SAOD from bipolar ice cores. SAOD given in 4 equal area latitude bands (90S-30S, 30S-0N, 0N-30N, 30N-90N).</li>
+           </ul>
+         </dd>
+      <dt>CMIP6:</dt>
+         <dd>	
+          <ul>
+            <li>Source: <a href=ftp://iacftp.ethz.ch/pub_read/luo/CMIP6/CMIP_1850_2014_extinction_550nm_strat_only_v3.nc>[Download]</a></li>
+            <li>Reference:</li>
+            <li>Short description: Based on the GloSSAC observation-based reconstruction from 1979-present (Thomason et al., 2018). Thomason, L. W., Ernest, N., Millán, L., Rieger, L., Bourassa, A., Vernier, J.-P., Manney, G., Luo, B., Arfeuille, F. and Peter, T.: A global space-based stratospheric aerosol climatology: 1979–2016, Earth Syst. Sci. Data, 10(1), 469–492, doi:10.5194/essd-10-469-2018, 2018.</li> 
+          </ul>
+         </dd>
+      <dt>eVolv2k:</dt>
+         <dd>	
+           <ul>
+            <li>Source: <a href=https://cera-www.dkrz.de/WDCC/ui/cerasearch/entry?acronym=eVolv2k_v3>World Data Centre for Climate (WDCC).</a></li>
+            <li>Reference: Toohey, M. and Sigl, M.: Volcanic stratospheric sulfur injections and aerosol optical depth from 500 BCE to 1900 CE, Earth Syst. Sci. Data, 9(2), 809–831, doi:10.5194/essd-9-809-2017, 2017.</li>
+            <li>Short description: SAOD estimated from newly synchronized bipolar ice core arrays. Spatial structure based on parameterized EVA following satellite observations of Pinatubo aerosol. Recommended forcing for past1000 and past2k experiments for CMIP6/PMIP4.</li>
+           </ul>
+         </dd>
+    </dl>
+
+  <h2>Credit:</h2>
+  <p>This page and app was created by C.J. Ogilvie. It was created under the supervision of Dr. Matthew Toohey, for the Institute of Space and Atmospheric Studies at the University of Saskatchewan. Last updated December 11th, 2020.</p>
+  </body>
+</html>
