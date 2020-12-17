@@ -506,18 +506,20 @@ if __name__ == "__main__":
     height = 500
 
     # Set labels for each plot point
-    TOOLTIPS = [("index", "$index"), ("(x,y)", "($x, $y)")]
+    TOOLTIPS = [("Dataset", "@name"), ("Year", "$x"), ("SAOD", "$y")]
 
     # Build multi-plot
     plot = figure(title=title, x_axis_label=xlabel, y_axis_label=ylabel, tooltips=TOOLTIPS,  width=width,
-                  tools=["xpan", "pan", "box_zoom", "reset"], height=height, x_range=Range1d(start=-50, end=2020))
+                  tools=["xpan", "pan", "ywheel_zoom", "box_zoom", "reset", "save"], height=height, x_range=Range1d(start=-50, end=2020))
+    plot.toolbar.active_scroll = plot.select_one(WheelZoomTool)
     # Build lists to store the lines and their data sources for later
     lines = []
     sources = []
     for index, ds in enumerate(Datasets):
         # Pull the relevant data from the dictionary
         current_set = Datasets[names[index]]
-        data = {'GM_AOD': current_set['GM_AOD'],
+        data = {'name': current_set['name'],
+                'GM_AOD': current_set['GM_AOD'],
                 'Time': current_set['Time']}
         # Structure the data into the style bokeh uses (pandas dataframes)
         df = pd.DataFrame(data)
@@ -528,12 +530,14 @@ if __name__ == "__main__":
 
         # Store the source to be used later
         sources.append(source)
+    plot.legend.click_policy = "hide"
 
     # Add an interactive plot tool to select a date range
     # First, build the plot
     select = figure(title="Drag the middle and edges of the selection box to change the range above",
                     plot_height=200, plot_width=1000, y_range=plot.y_range, y_axis_type=None,
-                    tools=["xpan", "pan", "box_zoom", "reset"], background_fill_color="#efefef")
+                    tools=["xpan", "xwheel_zoom", "pan", "reset"], background_fill_color="#efefef")
+    select.toolbar.active_scroll = select.select_one(WheelZoomTool)
     select.toolbar.logo = None
 
     # Build the range tool we will overlay on the plot
@@ -608,24 +612,28 @@ if __name__ == "__main__":
         color = palettes.inferno(n_divs)
         color = color[::-1]  # reverse the color palette
         # Override the max value for files with outlier points
-        if name == "GISS":
+
+        #  high = round(0.75 * np.max(aod), 1)  #  default colorbar high value
+
+        if index < 3:  # Set time range and colour bar more milennial data
+            high = 0.5
+            if index == 0:  # Link axes to the millennial plot so all zoom and pan together
+                x_range = [-500, 2020]
+            else:
+                x_range = plots[0].x_range
+        else:  # Set time range and colour bar for historical data
             high = 0.2
-        elif name == "IVI2":
-            high = 1.0
-        else:
-            high = round(0.75*np.max(aod), 1)
+            if index == 3:  # Link axes to the first historical plot
+                x_range = [1850, 2020]
+            else:
+                x_range = plots[3].x_range
 
         mapper = LinearColorMapper(palette=color, low=0, high=high)
         levels = np.linspace(0, high, n_divs)
 
-        if index < 3:
-            x_range = [-500, 2020]
-        else:
-            x_range = [1850, 2020]
-
         p = figure(title=names[index], x_axis_label='Time (Years)', y_axis_label='Latitude (Deg. N)', x_range=x_range,
-                   y_range=[-90, 90], width=1000, height=250, tooltips=[("x", "$x"), ("y", "$y"), ("value", "@image")],
-                   tools=["xpan", "xwheel_zoom", "reset"])
+                   y_range=[-90, 90], width=1000, height=250, tooltips=[("Time", "$x"), ("Latitude", "$y"), ("SAOD", "@image")],
+                   tools=["xpan", "xwheel_zoom", "reset", "save"])
         p.yaxis.ticker = [-90, -60, -30, 0, 30, 60, 90]
         # For our ordering, divided into millennial (-500-2020) and historical (1850-2020):
 
